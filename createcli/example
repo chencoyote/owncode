@@ -1,0 +1,7 @@
+system auth user #add username <username> password <password>
+system auth user #delete username <username> password <password>
+system auth user #show username <username:add.py>
+system auth user #show password :add.py
+system auth user #modify username <username> 
+system auth user #export username :add.py password :add.py
+system auth user #import username <username> password <password> rolename <rolename:add.py>
