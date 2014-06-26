@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+ <property>
+    <name>dfs.replication</name>
+    <value>2</value>
+  </property>
+
+<property>
+    <name>hadoop.tmp.dir</name>
+    <value>/mnt/sdg/hadoop-1.0.2/hadooptmp</value>
+    <description>A base for other temporary directories.</description>
+</property>
+
+<!--
+<property>
+    <name>hadoop.tmp.dir</name>
+    <value>/mnt/sdg/hadoopfslwb/hadoop-1.0.2/hadooptmp,/mnt/sdh/hadoopfslwb/hadoop-1.0.2/hadooptmp</value>
+    <description>A base for other temporary directories.</description>
+</property>
+-->
+<!--
+<property>
+  <name>dfs.block.size</name>
+  <value>67108864</value>-->
+  <!--<value>134217728</value>-->
+<!--
+  <description>The default block size for new files 64M</description>
+</property>
+<property>
+-->
+<property>
+    <name>dfs.name.dir</name>
+    <value>/liuwb/hadoop-1.0.2/filesystem/name</value>
+    <description>Determines where on the local filesystem the DFS name node should store the name table.</description>
+</property>
+
+<property>
+    <name>dfs.data.dir</name>
+    <value>/mnt/sde/hadoop-1.0.2/filesystem/,/mnt/sdd/hadoop-1.0.2/filesystem/,/mnt/sdh/hadoop-1.0.2/filesystem</value>
+    <description>Determines where on the local filesystem an DFS data node should store its blocks.
+         If this is a comma-delimited list of directories, then data will be stored in all named directories, typically
+         on different devices. Directories that do not exist are ignored.</description>
+</property>
+<!--
+<property> 
+  <name>dfs.http.address</name>
+  <value>172.18.11.73:50070</value>
+  <description>
+    The address and the base port where the dfs namenode web ui will listen on. 
+    If the port is 0 then the server will start on a free port. 
+  </description> 
+</property>
+-->
+<property> 
+ <name>dfs.socket.timeout</name> 
+ <value>18000000</value> 
+ <description>dfs socket timeout</description> 
+</property> 
+
+<property> 
+ <name>dfs.datanode.socket.write.timeout</name> 
+ <value>360000000</value> 
+ <description>datanode write timeout</description> 
+</property> 
+
+<property> 
+ <name>dfs.balance.bandwidthPerSec</name> 
+ <value>419430400</value> 
+ <description>
+  Specifies the maximum bandwidth that each datanode can utilize for the balancing purpose in term of the number of bytes per second.
+ </description> 
+</property>
+
+</configuration>
