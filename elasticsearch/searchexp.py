@@ -14,7 +14,6 @@ import simplejson
 import string
 import sys
 from optparse import OptionParser
-# MY_KEY   bJhBtufYv79oDCKwh5IHDGxnD3VZD4LF
 #API_KEY = "" # YOUR_API_KEY
 
 __author__ = 'heshang'
