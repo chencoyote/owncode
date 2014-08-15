@@ -48,7 +48,7 @@ class shodanAPI:
             except Exception:
                 continue
             else:
-                print 'found vul host : %s' % host
+                print '[Success] found vul host : %s' % host
                 __result.append(host)
         return __result
 
@@ -64,7 +64,7 @@ class shodanAPI:
             #     print page
             try:
                 results = api.search(self.query,self.page)
-                print 'Results found: %s' % results['total']
+                print '[Success] Results found: %s' % results['total']
                 for service in results["matches"]:
                     self.hosts.append(str(service["ip_str"]))
                 print self.hosts
@@ -112,7 +112,7 @@ class Exp:
                    "Accept": "ext/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
                    "Content-Type": "application/json; charset=utf-8",
                    "Connection": "keep-alive"}
-        print "start post exp data"
+        print "[INFO] [POST] start post exp data"
         conn = httplib.HTTPConnection('%s' % self.host + ':' + '%d' % self.port)
         conn.request('POST', '/_search?source', data, headers)
         result = conn.getresponse().read()
@@ -151,15 +151,15 @@ def main(argv):
     opts, args = options.parse_args(argv)
     hosts = []
     if opts.shodan:
-        print "start shodan search & exp"
+        print "[INFO] [Search] start shodan search & exp"
         ck = shodanAPI(opts.api_key)
         hosts = ck.result()
     elif not opts.shodan and not opts.hosts_file:
         if args:
-            print "start host exp"
+            print "[INFO] [EXP] start host exp"
             hosts = [args[0]]
     elif opts.hosts_file:
-        print "start hosts file & exp"
+        print "[INFO] [EXP] start hosts file & exp"
         hosts = [file.strip() for file in open(options.hosts_file, 'r')]
     if not hosts:
         options.print_help()
@@ -172,7 +172,7 @@ def main(argv):
             res = res['hits']['hits']
             if len(res) > 0:
                 res = res[0]['fields']['exp']
-                print res
+                print "[Result] [SAVEFILE]" % res
             else:
                 print "[ERROR] [EXP] failed to exp host:%s" % host
         elif not opts.path:
@@ -181,7 +181,7 @@ def main(argv):
             res = res['hits']['hits']            
             if len(res) > 0:
                 res = res[0]['fields']['exp']
-                s = '%s' % res
+                s = '[Result] [EXEC] %s' % res
                 s = s.split('|')
                 for i in s:
                     print i#.decode("unicode_escape")
@@ -189,7 +189,7 @@ def main(argv):
                 print "[ERROR] [EXP] failed to exp host:%s" % host
                 
 if __name__ == "__main__":
-    #try:
+    try:
         main(sys.argv[1:])
-    # except KeyboardInterrupt:
-    #     print "Scan terminated\n"
+    except KeyboardInterrupt:
+         print "Scan terminated\n"
