@@ -182,7 +182,6 @@ def main(argv):
             res = res['hits']['hits']            
             if len(res) > 0:
                 res = res[0]['fields']['exp']
-                print res
                 s = '%s' % res
                 s = s.split('|')
                 for i in s:
